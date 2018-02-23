@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <Lib/Daysquare.h>
+#import "Classes/Daysquare.h"
 
 @interface ViewController () <DAYCalendarViewDelegate>
 
