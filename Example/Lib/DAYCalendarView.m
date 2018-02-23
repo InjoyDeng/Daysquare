@@ -342,6 +342,13 @@
     comps.month = month;
     comps.year = year;
     
+    if (self.onlyVisibleCurrentMonth && self->_visibleMonth != month) {
+        view.alpha = 0;
+    }
+    else {
+        view.alpha = 1;
+    }
+    
     view.textLabel.text = [NSString stringWithFormat:@"%d", (int) day];
     if ([DAYUtils isDateTodayWithDateComponents:comps]) {
         if (self.useTodayAnotherName) {
@@ -390,7 +397,15 @@
     else {
         [view setSelected:NO];
     }
-    view.textColor = self.componentTextColor;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:drawComponentTextColorOfDate:)]) {
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        view.textColor = [self.delegate calendarView:self drawComponentTextColorOfDate:[cal dateFromComponents:comps]];
+    }
+    else {
+        view.textColor = self.componentTextColor;
+    }
+    
     view.highlightTextColor = self.highlightedComponentTextColor;
     view.textLabel.alpha = self->_visibleMonth == month ? 1.0 : 0.5;
     if (self->_visibleMonth == month && self.boldPrimaryComponentText) {
@@ -398,10 +413,6 @@
     }
     else {
         view.textLabel.font = [UIFont systemFontOfSize:self.componentFontSize];
-        
-        if (self.onlyVisibleCurrentMonth) {
-            view.alpha = 0;
-        }
     }
 }
 
@@ -531,6 +542,13 @@
     if (comps.year != self->_visibleYear || comps.month != self->_visibleMonth) {
         [self jumpToMonth:comps.month year:comps.year];
         return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:shouldChangeSelecteDate:)]) {
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        if (![self.delegate calendarView:self shouldChangeSelecteDate:[cal dateFromComponents:comps]]) {
+            return;
+        }
     }
     
     // by Rakuyo. Solves the problem that switch error in single line mode

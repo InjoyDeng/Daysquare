@@ -9,9 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
 
+@class DAYCalendarView;
+@protocol DAYCalendarViewDelegate <NSObject>
+
+@optional
+- (BOOL)calendarView:(DAYCalendarView *)calendarView shouldChangeSelecteDate:(NSDate *)newDate;
+- (UIColor *)calendarView:(DAYCalendarView *)calendarView drawComponentTextColorOfDate:(NSDate *)date;
+
+@end
+
 @interface DAYCalendarView : UIControl
 
 @property (copy, nonatomic) NSDate *selectedDate;
+
+@property (weak, nonatomic) id<DAYCalendarViewDelegate> delegate;
 
 @property (copy, nonatomic) NSArray<NSString *> *localizedStringsOfWeekday;
 
