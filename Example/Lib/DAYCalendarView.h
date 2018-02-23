@@ -31,6 +31,7 @@
 @property (assign, nonatomic) BOOL boldPrimaryComponentText;
 @property (assign, nonatomic) BOOL singleRowMode;
 @property (assign, nonatomic) BOOL useTodayAnotherName;
+@property (assign, nonatomic) BOOL onlyVisibleCurrentMonth;
 
 // Additional features:
 @property (assign, nonatomic) BOOL showUserEvents;

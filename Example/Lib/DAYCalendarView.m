@@ -398,6 +398,10 @@
     }
     else {
         view.textLabel.font = [UIFont systemFontOfSize:self.componentFontSize];
+        
+        if (self.onlyVisibleCurrentMonth) {
+            view.alpha = 0;
+        }
     }
 }
 
