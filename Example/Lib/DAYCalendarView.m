@@ -342,7 +342,15 @@
     comps.month = month;
     comps.year = year;
     
+    view.textLabel.text = [NSString stringWithFormat:@"%d", (int) day];
     if ([DAYUtils isDateTodayWithDateComponents:comps]) {
+        if (self.useTodayAnotherName) {
+            NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            dateFormatter.dateStyle = NSDateFormatterShortStyle;
+            dateFormatter.doesRelativeDateFormatting = YES;
+            view.textLabel.text = [dateFormatter stringFromDate:[NSDate date]];
+        }
+        
         if (self.todayIndicatorView.hidden) {
             self.todayIndicatorView.hidden = NO;
             self.todayIndicatorView.transform = CGAffineTransformMakeScale(0, 0);
@@ -391,7 +399,6 @@
     else {
         view.textLabel.font = [UIFont systemFontOfSize:self.componentFontSize];
     }
-    view.textLabel.text = [NSString stringWithFormat:@"%d", (int) day];
 }
 
 - (void)configureContentView {

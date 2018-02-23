@@ -30,6 +30,7 @@
 
 @property (assign, nonatomic) BOOL boldPrimaryComponentText;
 @property (assign, nonatomic) BOOL singleRowMode;
+@property (assign, nonatomic) BOOL useTodayAnotherName;
 
 // Additional features:
 @property (assign, nonatomic) BOOL showUserEvents;
