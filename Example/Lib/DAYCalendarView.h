@@ -22,7 +22,12 @@
 @property (copy, nonatomic) UIColor *highlightedComponentTextColor;
 @property (copy, nonatomic) UIColor *selectedIndicatorColor;
 @property (copy, nonatomic) UIColor *todayIndicatorColor;
+
+@property (assign, nonatomic) CGFloat weekdayHeaderFontSize;
+@property (assign, nonatomic) CGFloat componentFontSize;
+
 @property (assign, nonatomic) CGFloat indicatorRadius;
+
 @property (assign, nonatomic) BOOL boldPrimaryComponentText;
 @property (assign, nonatomic) BOOL singleRowMode;
 
