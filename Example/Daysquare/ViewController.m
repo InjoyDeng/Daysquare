@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <Lib/Daysquare.h>
 
-@interface ViewController ()
+@interface ViewController () <DAYCalendarViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet DAYCalendarView *calendarView;
@@ -26,7 +26,6 @@
     
     [self.datePicker addTarget:self action:@selector(datePickerDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.calendarView addTarget:self action:@selector(calendarViewDidChange:) forControlEvents:UIControlEventValueChanged];
-    self.calendarView.localizedStringsOfWeekday = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6"];
     [self.calendarView reloadViewAnimated:NO];
 }
 

@@ -399,8 +399,7 @@
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:drawComponentTextColorOfDate:)]) {
-        NSCalendar *cal = [NSCalendar currentCalendar];
-        view.textColor = [self.delegate calendarView:self drawComponentTextColorOfDate:[cal dateFromComponents:comps]];
+        view.textColor = [self.delegate calendarView:self drawComponentTextColorOfDate:[[DAYUtils localCalendar] dateFromComponents:comps]];
     }
     else {
         view.textColor = self.componentTextColor;
@@ -504,8 +503,16 @@
 }
 
 - (NSString *)navigationBarTitle {
-    NSString *stringOfMonth = [DAYUtils stringOfMonthInEnglish:self->_visibleMonth];
-    return [NSString stringWithFormat:@"%@ %lu", stringOfMonth, (unsigned long) self->_visibleYear];
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.month = self->_visibleMonth;
+    dateComponents.year = self->_visibleYear;
+    
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"YYYY MMM" options:0 locale:[NSLocale currentLocale]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = dateFormat;
+    
+    NSDate *date = [[DAYUtils localCalendar] dateFromComponents:dateComponents];
+    return [dateFormatter stringFromDate:date];
 }
 
 - (DAYComponentView *)componentViewForDateComponents:(NSDateComponents *)comps {
@@ -545,8 +552,7 @@
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:shouldChangeSelecteDate:)]) {
-        NSCalendar *cal = [NSCalendar currentCalendar];
-        if (![self.delegate calendarView:self shouldChangeSelecteDate:[cal dateFromComponents:comps]]) {
+        if (![self.delegate calendarView:self shouldChangeSelecteDate:[[DAYUtils localCalendar] dateFromComponents:comps]]) {
             return;
         }
     }
