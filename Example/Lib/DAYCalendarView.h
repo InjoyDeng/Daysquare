@@ -13,7 +13,7 @@
 @protocol DAYCalendarViewDelegate <NSObject>
 
 @optional
-- (BOOL)calendarView:(DAYCalendarView *)calendarView shouldChangeSelecteDate:(NSDate *)newDate;
+- (BOOL)calendarView:(DAYCalendarView *)calendarView shouldChangeSelecteDate:(NSDate *)date;
 - (UIColor *)calendarView:(DAYCalendarView *)calendarView drawComponentTextColorOfDate:(NSDate *)date;
 
 @end
@@ -54,3 +54,4 @@
 - (void)jumpToMonth:(NSUInteger)month year:(NSUInteger)year;
 
 @end
+

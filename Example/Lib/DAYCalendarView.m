@@ -59,24 +59,20 @@
 }
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self commonInit];
+    if (self = [self initWithFrame:CGRectZero]) {
     }
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
         [self commonInit];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
+    if (self = [super initWithCoder:aDecoder]) {
         [self commonInit];
     }
     return self;
@@ -761,3 +757,5 @@
 }
 
 @end
+
+

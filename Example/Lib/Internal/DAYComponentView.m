@@ -30,6 +30,11 @@
     }
 }
 
+- (void)setTextColor:(UIColor *)textColor {
+    self->_textColor = textColor;
+    self->_textLabel.textColor = self->_textColor;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -144,3 +149,5 @@
 }
 
 @end
+
+
