@@ -33,7 +33,9 @@
 
 @end
 
-@implementation DAYCalendarView
+@implementation DAYCalendarView {
+    CALayer *lineLayer;
+}
 
 - (void)setSingleRowMode:(BOOL)singleRowMode {
     if (self->_singleRowMode != singleRowMode) {
@@ -76,6 +78,11 @@
         [self commonInit];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    lineLayer.frame = CGRectMake(0, CGRectGetMaxY(self.weekHeaderView.frame) + 5, self.bounds.size.width, 0.5);
 }
 
 - (void)commonInit {
@@ -172,6 +179,8 @@
     
     self.contentWrapperView = [[UIView alloc] init];
     self.contentWrapperView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentWrapperView.layer.borderWidth = 1;
+    self.contentWrapperView.layer.borderColor = [UIColor redColor].CGColor;
     
     [self addSubview:self.contentWrapperView];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.contentWrapperView
@@ -180,7 +189,7 @@
                                                         toItem:self.weekHeaderView
                                                      attribute:NSLayoutAttributeBottom
                                                     multiplier:1.0
-                                                      constant:0]];
+                                                      constant:10]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.contentWrapperView
                                                      attribute:NSLayoutAttributeBottom
                                                      relatedBy:NSLayoutRelationEqual
@@ -257,6 +266,10 @@
 }
 
 - (void)makeUIElements {
+    lineLayer = [CALayer layer];
+    lineLayer.backgroundColor = [UIColor colorWithWhite:242/255.0 alpha:1].CGColor;
+    [self.layer addSublayer:lineLayer];
+    
     // Make indicator views;
     self.selectedIndicatorView = [[DAYIndicatorView alloc] init];
     self.selectedIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
