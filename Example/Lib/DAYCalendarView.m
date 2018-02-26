@@ -118,7 +118,7 @@
                                                         toItem:self
                                                      attribute:NSLayoutAttributeTop
                                                     multiplier:1.0
-                                                      constant:0]];
+                                                      constant:7]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.navigationBar
                                                      attribute:NSLayoutAttributeWidth
                                                      relatedBy:NSLayoutRelationEqual
@@ -179,8 +179,6 @@
     
     self.contentWrapperView = [[UIView alloc] init];
     self.contentWrapperView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.contentWrapperView.layer.borderWidth = 1;
-    self.contentWrapperView.layer.borderColor = [UIColor redColor].CGColor;
     
     [self addSubview:self.contentWrapperView];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.contentWrapperView
