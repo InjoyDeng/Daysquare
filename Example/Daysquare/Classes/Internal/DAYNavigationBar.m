@@ -63,7 +63,7 @@
     self.prevButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.prevButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.prevButton.tintColor = [UIColor grayColor];
-    [self.prevButton setBackgroundImage:[UIImage imageNamed:@"icon_arrow_left"] forState:UIControlStateNormal];
+    [self.prevButton setBackgroundImage:[UIImage imageNamed:@"icon_the_left1"] forState:UIControlStateNormal];
     [self.prevButton addTarget:self action:@selector(prevButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.prevButton];
@@ -100,7 +100,7 @@
     self.nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.nextButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.nextButton.tintColor = [UIColor grayColor];
-    [self.nextButton setBackgroundImage:[UIImage imageNamed:@"icon_arrow"] forState:UIControlStateNormal];
+    [self.nextButton setBackgroundImage:[UIImage imageNamed:@"icon_the_right1"] forState:UIControlStateNormal];
     [self.nextButton addTarget:self action:@selector(nextButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.nextButton];
