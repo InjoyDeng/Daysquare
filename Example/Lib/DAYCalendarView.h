@@ -16,6 +16,9 @@
 - (BOOL)calendarView:(DAYCalendarView *)calendarView shouldChangeSelecteDate:(NSDate *)date;
 - (UIColor *)calendarView:(DAYCalendarView *)calendarView drawComponentTextColorOfDate:(NSDate *)date;
 
+- (void)calendarView:(DAYCalendarView *)calendarView didJumpToPreviousMonth:(NSUInteger)month year:(NSUInteger)year ;
+- (void)calendarView:(DAYCalendarView *)calendarView didJumpToNextMonth:(NSUInteger)month year:(NSUInteger)year ;
+
 @end
 
 @interface DAYCalendarView : UIControl

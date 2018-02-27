@@ -73,7 +73,7 @@
 }
 
 + (BOOL)isDateTodayWithDateComponents:(NSDateComponents *)dateComponents {
-    NSDateComponents *todayComps = [self dateComponentsFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    NSDateComponents *todayComps = [self dateComponentsFromDate:[NSDate date]];
     
     return todayComps.year == dateComponents.year && todayComps.month == dateComponents.month && todayComps.day == dateComponents.day;
 }
