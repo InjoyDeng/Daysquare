@@ -349,7 +349,8 @@
     comps.month = month;
     comps.year = year;
     
-    if (self.onlyVisibleCurrentMonth && self->_visibleMonth != month) {
+    BOOL hideThisComponentView = self.onlyVisibleCurrentMonth && self->_visibleMonth != month;
+    if (hideThisComponentView) {
         view.alpha = 0;
     }
     else {
@@ -365,7 +366,7 @@
             view.textLabel.text = [dateFormatter stringFromDate:[NSDate date]];
         }
         
-        if (self.todayIndicatorView.hidden) {
+        if (self.todayIndicatorView.hidden && !hideThisComponentView) {
             self.todayIndicatorView.hidden = NO;
             self.todayIndicatorView.transform = CGAffineTransformMakeScale(0, 0);
             [UIView animateWithDuration:0.3 animations:^{
@@ -672,6 +673,7 @@
     if (self.singleRowMode) {
         [self updateCurrentVisibleRow];
     }
+    
 }
 
 - (void)jumpToPreviousMonth {
@@ -755,6 +757,16 @@
         
         if (!self.selectedDate) {
             self.selectedIndicatorView.hidden = YES;
+        }
+        
+        if (direction) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:didJumpToNextMonth:year:)]) {
+                [self.delegate calendarView:self didJumpToNextMonth:month year:year];
+            }
+        }else{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(calendarView:didJumpToPreviousMonth:year:)]) {
+                [self.delegate calendarView:self didJumpToPreviousMonth:month year:year];
+            }
         }
     }];
 }

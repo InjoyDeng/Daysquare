@@ -26,6 +26,7 @@
     
     [self.datePicker addTarget:self action:@selector(datePickerDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.calendarView addTarget:self action:@selector(calendarViewDidChange:) forControlEvents:UIControlEventValueChanged];
+    self.calendarView.delegate = self;
     [self.calendarView reloadViewAnimated:NO];
 }
 
